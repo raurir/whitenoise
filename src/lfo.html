@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Noise LFO</title>
+	<script type="text/javascript" src="../lib/ToneJS/build/Tone.js"></script>
+<body>
+	<div id="Content">
+		</div>
+	</div>
+	<script id="JSCode" type="text/javascript">
+	var con = console;
+	function createFilteredNoise(options) {
+		var filter = new Tone.AutoFilter({
+			"frequency" : options.frequency,
+			"depth" : 0.9,
+			"min" : options.min,
+			"max" : options.max
+		}).toMaster().start();
+		var noise = new Tone.Noise({
+			type: options.type,
+			"volume" : -1,
+		}).connect(filter).start();
+
+		// var noise = new Tone.Noise("pink").start();
+		// var autoFilter = new Tone.AutoFilter({
+		// 	"frequency" : "8m",
+		// 	"min" : 800,
+		// 	"max" : 15000
+		// }).connect(Tone.Master);
+		// noise.connect(autoFilter);
+		// autoFilter.start();
+
+		// setInterval(function() {
+		// 	var newSpeed = Math.random() * 20;
+		// 	filter.frequency.rampTo(newSpeed, 1.5);
+		// }, options.timeout);
+
+		var newSpeed = options.frequency * 2;
+		filter.frequency.rampTo(newSpeed, 20);
+
+	}
+
+	let getNumber = (min, max) => {
+		return Math.random() * (max - min) + min;
+	}
+
+	let getType = () => {
+		var types = ["white", "brown", "pink"];
+		return types[ Math.floor(Math.random() * 3)];
+	}
+
+	var settings = [
+		// {frequency: 3, type: "white", timeout: 4000, min: 800, max: 20000},
+		// {frequency: 4, type: "brown", timeout: 8000, min: 16000, max: 40000},
+		// {frequency: 14, type: "brown", timeout: 8000, min: 16000, max: 40000},
+	];
+	settings = Array.from(new Array(3), () => {
+		var min = getNumber(800, 24000);
+		return {
+			frequency: getNumber(2, 12),
+			type: getType(),
+			min: min,
+			max: getNumber(min, 64000)
+		}
+	});
+	con.log(settings);
+	settings.forEach(createFilteredNoise);
+	</script>
+</body>
+</html>
