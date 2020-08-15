@@ -1,7 +1,6 @@
 const events = {
 	trigger: (eventName) => {
 		var e = new Event(eventName);
-		// con.log("trigger", e);
 		window.dispatchEvent(e);
 	},
 	on: (eventName, callback, params) => {
@@ -15,8 +14,8 @@ const events = {
 		}
 		// window.addEventListener(eventName, () => con.log("event", eventName));
 	},
-	next: 'next',
-	reset: 'reset',
-	settingsUpdated: 'settingsUpdated',
-}
+	next: "next",
+	reset: "reset",
+	settingsUpdated: "settingsUpdated",
+};
 export default events;

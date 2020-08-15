@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "white noise for babies",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "tone": "^14.7.39"
+  },
   "devDependencies": {
     "babel": "^5.8.23",
     "babelify": "^6.3.0",
@@ -19,7 +21,7 @@
     "watchify": "^3.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "gulp"
   },
   "repository": {
     "type": "git",
@@ -36,5 +38,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/raurir/whitenoise/issues"
+  },
+  "engines": {
+    "node": "10.9.0"
   }
 }
